@@ -48,6 +48,29 @@ def rot_left(a, d):
     a[n-d] = first
     return a
 
+def rot_left_pythonic(a, d):
+    """
+    Always O(n), but uses dynamic list creating (not pure array)
+
+    >>> rot_left_pythonic([1, 2, 3, 4, 5], 4)
+    [5, 1, 2, 3, 4]
+    >>> rot_left_pythonic([1, 2, 3, 4, 5], 5)
+    [1, 2, 3, 4, 5]
+    >>> rot_left_pythonic([1, 2, 3, 4, 5], 3)
+    [4, 5, 1, 2, 3]
+    >>> rot_left_pythonic([41, 73, 89, 7, 10, 1, 59, 58, 84, 77, 77, 97, 58, 1, 86, 58, 26, 10, 86, 51], 10)
+    [77, 97, 58, 1, 86, 58, 26, 10, 86, 51, 41, 73, 89, 7, 10, 1, 59, 58, 84, 77]
+    """
+    n = len(a)
+    if (n == d):
+        return a
+    result = []
+    i = d%n
+    for _ in range(n):
+        result.append(a[i])
+        i = (i+1)%n
+    return result
+
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
